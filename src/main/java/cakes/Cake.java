@@ -4,10 +4,14 @@ public class Cake {
 
     private final CakeType cakeType;
     private final CakeSize cakeSize;
+    private final CakeViewDecoration cakeViewDecoration;
 
-    public Cake(CakeType cakeType, CakeSize cakeSize) {
+
+    private Cake(CakeType cakeType,
+                 CakeSize cakeSize, CakeViewDecoration cakeViewDecoration) {
         this.cakeType = cakeType;
         this.cakeSize = cakeSize;
+        this.cakeViewDecoration = cakeViewDecoration;
     }
 
     public CakeType getCakeType() {
@@ -18,27 +22,37 @@ public class Cake {
         return cakeSize;
     }
 
+    public CakeViewDecoration getCakeViewDecoration() {
+        return cakeViewDecoration;
+    }
 
-    public class CakeBuilder {
-        private Cake cakeTmp;
+    public static class CakeBuilder {
 
-        public CakeBuilder() {
-            cakeTmp = new Cake(cakeType, cakeSize);
+        private CakeType cakeType;
+        private CakeSize cakeSize;
+        private CakeViewDecoration cakeViewDecoration;
+
+        public CakeBuilder cakeType(CakeType cakeType) {
+            this.cakeType = cakeType;
+            return this;
+        }
+
+        public CakeBuilder cakeSize(CakeSize cakeSize) {
+            this.cakeSize = cakeSize;
+            return this;
+        }
+
+        public CakeBuilder cakeView(CakeViewDecoration cakeViewDecoration) {
+            this.cakeViewDecoration = cakeViewDecoration;
+            return this;
         }
 
         public Cake build() {
-            return cakeTmp;
+            return new Cake(
+                    cakeType,
+                    cakeSize,
+                    cakeViewDecoration);
         }
-
-//        public CakeBuilder setCakeType(CakeType cakeType) {
-//            cakeTmp.setCakeType(cakeType);
-//            return this;
-//        }
-//
-//        public CakeBuilder setCakeSize(CakeSize cakeSize) {
-//            cakeTmp.setCakeSize(cakeSize);
-//            return this;
-//        }
 
     }
 }
