@@ -1,4 +1,4 @@
-package cakes;
+package ru.sosweet.cakes;
 
 public class Cake {
 

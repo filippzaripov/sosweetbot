@@ -1,4 +1,4 @@
-package cakes;
+package ru.sosweet.cakes;
 
 public enum CakeSize implements CakeProperty {
     SMALL(10, 10), MIDDLE(20, 20), BIG(30, 30);
