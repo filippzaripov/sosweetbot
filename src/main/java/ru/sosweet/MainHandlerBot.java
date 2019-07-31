@@ -32,8 +32,8 @@ public class MainHandlerBot extends SoSweetBot {
                     execute(SendMessageKeyboardFactory.mainKeyboard(chat_id));
                 }
             }
-        } else if (update.hasCallbackQuery()){
-            execute(CallbackQueryHandler.replyQuery(update));
+        } else if (update.hasCallbackQuery()) {
+            execute(CallbackQueryHandler.replyQueryMain(update));
         }
     }
 }

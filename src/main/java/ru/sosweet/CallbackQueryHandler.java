@@ -8,10 +8,9 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 public class CallbackQueryHandler {
     private static final Logger log = Logger.getLogger(CallbackQueryHandler.class);
 
-    public static SendMessage replyQuery(Update update) {
+    public static SendMessage replyQueryMain(Update update) {
         long chat_id = update.getCallbackQuery().getMessage().getChatId();
-        SendMessage message = new SendMessage();
-        switch (update.getCallbackQuery().getMessage().getText()) {
+        switch (update.getCallbackQuery().getData()) {
             case "Торты на заказ":
                 return SendMessageKeyboardFactory.cakeType(chat_id);
             case "Кафе":

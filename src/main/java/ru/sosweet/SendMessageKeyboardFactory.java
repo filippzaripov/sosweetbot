@@ -4,12 +4,15 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 
 public class SendMessageKeyboardFactory {
+    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     private static InlineKeyboardMarkup setCustomKeyboard(LinkedHashMap<String, String> textAndCallback) {
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
@@ -36,18 +39,23 @@ public class SendMessageKeyboardFactory {
                 .setReplyMarkup(setCustomKeyboard(mainKeyboard));
     }
 
-    public static SendMessage cakeType(long chat_id){
+    public static SendMessage cakeType(long chat_id) {
+        String text = "Приветствую дорогой гость!\n" +
+                "Здесь ты можешь заказать кондитерское изделие на свой вкус.\n" +
+                "Пожалуйста, выбери, что именно ты хочешь?\n" +
+                "ВНИМАНИЕ! Ближайшая дата выполнения заказа : \n" +
+                LocalDate.now().plusDays(3).format(formatter);
         LinkedHashMap<String, String> mainKeyboard = new LinkedHashMap<>();
         mainKeyboard.put("Торт", "Торт");
         mainKeyboard.put("Чизкейк", "Чизкейк");
         mainKeyboard.put("Десерт", "Десерт");
         return new SendMessage()
                 .setChatId(chat_id)
-                .setText("Выбери тип торта")
+                .setText(text)
                 .setReplyMarkup(setCustomKeyboard(mainKeyboard));
     }
 
-    public static SendMessage cafe(long chat_id){
+    public static SendMessage cafe(long chat_id) {
         LinkedHashMap<String, String> mainKeyboard = new LinkedHashMap<>();
         mainKeyboard.put("О нас", "О нас");
         mainKeyboard.put("Контакты", "Контакты");
@@ -58,7 +66,7 @@ public class SendMessageKeyboardFactory {
                 .setReplyMarkup(setCustomKeyboard(mainKeyboard));
     }
 
-    public static SendMessage errorMessage(long chat_id){
+    public static SendMessage errorMessage(long chat_id) {
         return new SendMessage().setText("Произошла неизвестная ошибка");
     }
 
