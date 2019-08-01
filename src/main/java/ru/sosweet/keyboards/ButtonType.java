@@ -2,6 +2,7 @@ package ru.sosweet.keyboards;
 
 public enum ButtonType {
     ERROR("error"),
+    BACK("back"),
 
     MAIN("main"),
 
@@ -23,6 +24,7 @@ public enum ButtonType {
     CAKE("cake"),
     CHEESECAKE("cheesecake"),
     DESSERT("dessert");
+
 
 
     public String callBackData;

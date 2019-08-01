@@ -18,17 +18,17 @@ public abstract class Keyboard {
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     String text = "";
 
-
     InlineKeyboardMarkup setCustomKeyboard(LinkedHashMap<String, ButtonType> textAndCallback) {
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
-
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
-        textAndCallback.forEach((text, callback) -> {
-            InlineKeyboardButton button = new InlineKeyboardButton();
-            button.setText(text)
-                    .setCallbackData(callback.callBackData);
-            rowList.add(Collections.singletonList(button));
-        });
+        if (textAndCallback.size() > 0) {
+            textAndCallback.forEach((text, callback) -> {
+                InlineKeyboardButton button = new InlineKeyboardButton();
+                button.setText(text)
+                        .setCallbackData(callback.callBackData);
+                rowList.add(Collections.singletonList(button));
+            });
+        }
         if (!textAndCallback.containsValue(CAFE)) {
             rowList.add(getBackAndHomeInlineButtons(getPreviousKeyboardButton()));
         }
@@ -36,7 +36,15 @@ public abstract class Keyboard {
         return markup;
     }
 
-    private static List<InlineKeyboardButton> getBackAndHomeInlineButtons(ButtonType prevButton) {
+    public InlineKeyboardMarkup getBackKeyboard(ButtonType prevButton){
+        InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+        List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
+        rowList.add(getBackAndHomeInlineButtons(prevButton));
+        markup.setKeyboard(rowList);
+        return markup;
+    }
+
+    public static List<InlineKeyboardButton> getBackAndHomeInlineButtons(ButtonType prevButton) {
         List<InlineKeyboardButton> rowList = new ArrayList<>();
         rowList.add(
                 new InlineKeyboardButton()
