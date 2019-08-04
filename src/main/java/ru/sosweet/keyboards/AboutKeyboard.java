@@ -18,10 +18,11 @@ public class AboutKeyboard extends Keyboard {
     @Override
     public SendMessage getKeyboardSendMessage(long chat_id) {
         LinkedHashMap<String, ButtonType> mainKeyboard = new LinkedHashMap<>();
-        mainKeyboard.put("О нас", ABOUT);
+        mainKeyboard.put("instagram", INST);
         return new SendMessage()
                 .setChatId(chat_id)
-                .setText(readAbout());
+                .setText(readAbout())
+                .setReplyMarkup(setCustomKeyboard(mainKeyboard, true));
     }
 
     @Override

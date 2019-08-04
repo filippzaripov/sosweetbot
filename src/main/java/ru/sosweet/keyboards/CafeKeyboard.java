@@ -17,7 +17,7 @@ public class CafeKeyboard extends Keyboard {
         return new SendMessage()
                 .setChatId(chat_id)
                 .setText("Жмакай, дружище!")
-                .setReplyMarkup(setCustomKeyboard(mainKeyboard));
+                .setReplyMarkup(setCustomKeyboard(mainKeyboard,false));
     }
 
     @Override

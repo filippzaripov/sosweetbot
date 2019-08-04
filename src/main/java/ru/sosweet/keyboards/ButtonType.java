@@ -12,7 +12,10 @@ public enum ButtonType {
     CAFE("cafe"),
 
     MENU("menu"),
+
     ABOUT("about"),
+    INST("https://instagram.com/sosweet_cafe"),
+
     CONTACTS("contacts"),
     PROMOTIONS("promotions"),
 

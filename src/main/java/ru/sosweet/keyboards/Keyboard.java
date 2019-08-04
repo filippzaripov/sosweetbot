@@ -18,14 +18,19 @@ public abstract class Keyboard {
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     String text = "";
 
-    InlineKeyboardMarkup setCustomKeyboard(LinkedHashMap<String, ButtonType> textAndCallback) {
+    InlineKeyboardMarkup setCustomKeyboard(LinkedHashMap<String, ButtonType> textAndCallback, boolean setURL) {
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
         if (textAndCallback.size() > 0) {
             textAndCallback.forEach((text, callback) -> {
                 InlineKeyboardButton button = new InlineKeyboardButton();
-                button.setText(text)
-                        .setCallbackData(callback.callBackData);
+                if (setURL) {
+                    button.setText(text)
+                            .setUrl(callback.callBackData);
+                } else {
+                    button.setText(text)
+                            .setCallbackData(callback.callBackData);
+                }
                 rowList.add(Collections.singletonList(button));
             });
         }
@@ -36,7 +41,7 @@ public abstract class Keyboard {
         return markup;
     }
 
-    public InlineKeyboardMarkup getBackKeyboard(ButtonType prevButton){
+    public InlineKeyboardMarkup getBackKeyboard(ButtonType prevButton) {
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
         rowList.add(getBackAndHomeInlineButtons(prevButton));

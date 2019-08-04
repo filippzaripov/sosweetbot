@@ -5,7 +5,7 @@ import ru.sosweet.keyboards.ButtonType;
 
 public abstract class TextMessage {
 
-   public abstract SendMessage getMessage(long chat_id);
+    public abstract SendMessage getMessage(long chat_id);
 
-   public abstract ButtonType getPrevButton();
+    public abstract ButtonType getPrevButton();
 }

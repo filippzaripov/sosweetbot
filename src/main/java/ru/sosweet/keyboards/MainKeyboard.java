@@ -21,7 +21,7 @@ public class MainKeyboard extends Keyboard {
         return new SendMessage()
                 .setChatId(chat_id)
                 .setText(text)
-                .setReplyMarkup(setCustomKeyboard(mainKeyboard));
+                .setReplyMarkup(setCustomKeyboard(mainKeyboard, false));
     }
 
     //main keyboard doesn't have previous keyboard

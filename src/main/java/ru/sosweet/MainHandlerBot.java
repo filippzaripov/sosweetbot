@@ -5,6 +5,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.sosweet.factories.SendMessageKeyboardFactory;
 import ru.sosweet.keyboards.ButtonType;
@@ -46,11 +47,6 @@ public class MainHandlerBot extends SoSweetBot {
                     execute(photo);
                 }
                 execute(CallbackQueryHandler.replyQueryKeyboard(CAFE, chat_id));
-                break;
-            case ABOUT:
-                Pair message = CallbackQueryHandler.replyQueryText(callback, chat_id);
-                execute((SendMessage) message.getLeft());
-                //execute(CallbackQueryHandler.replyBackKeyboard(CAFE, chat_id));
                 break;
             default:
                 execute(CallbackQueryHandler.replyQueryKeyboard(callback, chat_id));
