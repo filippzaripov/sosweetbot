@@ -17,12 +17,12 @@ public abstract class SoSweetBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "sosweetkzn_bot";
+        return BotProperties.BOT_USERNAME;
     }
 
     @Override
     public String getBotToken() {
-        return "806657998:AAGT7VDNRWfK_PZnKeY_y-U5n2drMr_g3SY";
+        return BotProperties.BOT_TOKEN;
     }
 
     abstract void handle(Update update) throws TelegramApiException;
