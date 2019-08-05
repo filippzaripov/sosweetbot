@@ -1,16 +1,11 @@
 package ru.sosweet;
 
-import org.apache.commons.lang3.tuple.Pair;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
-import org.telegram.telegrambots.meta.api.methods.send.SendVenue;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.sosweet.factories.SendMessageKeyboardFactory;
 import ru.sosweet.keyboards.ButtonType;
-import ru.sosweet.photos.MenuPhotoReply;
 
 import static ru.sosweet.keyboards.ButtonType.*;
 
@@ -28,9 +23,7 @@ public class MainHandlerBot extends SoSweetBot {
                     execute(SendMessageKeyboardFactory.getKeyboard(MAIN).getKeyboardSendMessage(chat_id));
 
                 } else if (message_text.equals("/test")) {
-                    execute(new SendVenue().setChatId(chat_id)
-                            .setLatitude((float)55.7980573).setLongitude((float) 49.1182164).setTitle("address")
-                    .setAddress("Bolshaya Krasnaya,13, Kazan, Tatarstan"));
+                    //for tests
                 }
             }
         } else if (update.hasCallbackQuery()) {
@@ -48,6 +41,9 @@ public class MainHandlerBot extends SoSweetBot {
                     execute(photo);
                 }
                 execute(CallbackQueryHandler.replyQueryKeyboard(CAFE, chat_id));
+                break;
+            case LOCATION:
+                execute(CallbackQueryHandler.replyQueryVenue(LOCATION, chat_id));
                 break;
             default:
                 execute(CallbackQueryHandler.replyQueryKeyboard(callback, chat_id));

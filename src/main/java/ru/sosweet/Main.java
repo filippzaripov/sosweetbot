@@ -5,10 +5,7 @@ import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Properties;
+import static ru.sosweet.BotProperties.*;
 
 
 public class Main {
@@ -16,11 +13,8 @@ public class Main {
 
     public static void main(String[] args) {
         setProperties();
-
         ApiContextInitializer.init();
-
         TelegramBotsApi botsApi = new TelegramBotsApi();
-
         try {
             botsApi.registerBot(new MainHandlerBot());
         } catch (TelegramApiException e) {
@@ -29,17 +23,9 @@ public class Main {
     }
 
     private static void setProperties() {
-        try (FileInputStream input = new FileInputStream("src/main/resources/proxy.properties")) {
-            Properties properties = new Properties();
-            properties.load(input);
-            System.getProperties().put("proxySet", properties.getProperty("proxySet"));
-            System.getProperties().put("socksProxyHost", properties.getProperty("socksProxyHost"));
-            System.getProperties().put("socksProxyPort", properties.getProperty("socksProxyPort"));
-        } catch (FileNotFoundException e) {
-            log.error("Proxy file not found");
-        } catch (IOException e) {
-            log.error("Error while reading property file");
-        }
+        System.getProperties().put("proxySet", PROXY_SET);
+        System.getProperties().put("socksProxyHost", PROXY_HOST);
+        System.getProperties().put("socksProxyPort", PROXY_PORT);
     }
 }
 

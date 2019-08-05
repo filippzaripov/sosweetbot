@@ -17,6 +17,8 @@ public enum ButtonType {
     INST("https://instagram.com/sosweet_cafe"),
 
     CONTACTS("contacts"),
+    LOCATION("location"),
+
     PROMOTIONS("promotions"),
 
     /**

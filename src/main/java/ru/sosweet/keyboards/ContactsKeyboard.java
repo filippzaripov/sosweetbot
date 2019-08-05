@@ -1,23 +1,22 @@
 package ru.sosweet.keyboards;
 
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import ru.sosweet.BotProperties;
 
 import java.util.LinkedHashMap;
 
-import static ru.sosweet.keyboards.ButtonType.INST;
+import static ru.sosweet.keyboards.ButtonType.LOCATION;
 
 public class ContactsKeyboard extends Keyboard {
-    private static String contacts = null;
-    private static final String aboutFilePath = "src/main/resources/text/contacts";
 
     @Override
     public SendMessage getKeyboardSendMessage(long chat_id) {
-        if (contacts == null) {
-            contacts = readTextFile(aboutFilePath);
-        }
+        LinkedHashMap<String, ButtonType> keyboard = new LinkedHashMap<>();
+        keyboard.put("Показать на карте", LOCATION);
         return new SendMessage()
                 .setChatId(chat_id)
-                .setText(contacts);
+                .setText(BotProperties.CONTACTS)
+                .setReplyMarkup(setCustomKeyboard(keyboard, false));
     }
 
     @Override

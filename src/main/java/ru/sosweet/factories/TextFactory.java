@@ -9,6 +9,7 @@ public class TextFactory {
 
     private static final TextMessage aboutText = new AboutTextMessage();
 
+    //todo удалить в будущем если не понадобится
     public static TextMessage getMessage(ButtonType buttonType) {
         switch (buttonType) {
             case ABOUT:

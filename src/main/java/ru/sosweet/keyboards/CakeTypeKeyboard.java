@@ -22,7 +22,7 @@ public class CakeTypeKeyboard extends Keyboard {
         return new SendMessage()
                 .setChatId(chat_id)
                 .setText(text)
-                .setReplyMarkup(setCustomKeyboard(mainKeyboard,false));
+                .setReplyMarkup(setCustomKeyboard(mainKeyboard, false));
     }
 
     @Override
