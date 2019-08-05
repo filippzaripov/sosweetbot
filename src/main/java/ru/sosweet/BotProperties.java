@@ -29,6 +29,10 @@ public class BotProperties {
             PROXY_HOST = proxyProperties.getProperty("socksProxyHost");
             PROXY_PORT = proxyProperties.getProperty("socksProxyPort");
             PROXY_SET = proxyProperties.getProperty("proxySet");
+        } else {
+            PROXY_HOST = "127.0.0.1";
+            PROXY_PORT = "1234";
+            PROXY_SET = "false";
         }
 
         ABOUT = FilesReader.readText(aboutPath);

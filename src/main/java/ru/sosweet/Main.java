@@ -23,9 +23,11 @@ public class Main {
     }
 
     private static void setProperties() {
-        System.getProperties().put("proxySet", PROXY_SET);
-        System.getProperties().put("socksProxyHost", PROXY_HOST);
-        System.getProperties().put("socksProxyPort", PROXY_PORT);
+        if (PROXY_SET.equals("true")) {
+            System.getProperties().put("proxySet", PROXY_SET);
+            System.getProperties().put("socksProxyHost", PROXY_HOST);
+            System.getProperties().put("socksProxyPort", PROXY_PORT);
+        }
     }
 }
 
