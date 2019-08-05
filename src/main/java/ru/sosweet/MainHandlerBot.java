@@ -3,6 +3,7 @@ package ru.sosweet;
 import org.apache.commons.lang3.tuple.Pair;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
+import org.telegram.telegrambots.meta.api.methods.send.SendVenue;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -27,9 +28,9 @@ public class MainHandlerBot extends SoSweetBot {
                     execute(SendMessageKeyboardFactory.getKeyboard(MAIN).getKeyboardSendMessage(chat_id));
 
                 } else if (message_text.equals("/test")) {
-                    execute(new SendMessage()
-                            .setChatId(chat_id)
-                            .setText("instagram.com"));
+                    execute(new SendVenue().setChatId(chat_id)
+                            .setLatitude((float)55.7980573).setLongitude((float) 49.1182164).setTitle("address")
+                    .setAddress("Bolshaya Krasnaya,13, Kazan, Tatarstan"));
                 }
             }
         } else if (update.hasCallbackQuery()) {

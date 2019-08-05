@@ -19,9 +19,12 @@ public class AboutKeyboard extends Keyboard {
     public SendMessage getKeyboardSendMessage(long chat_id) {
         LinkedHashMap<String, ButtonType> mainKeyboard = new LinkedHashMap<>();
         mainKeyboard.put("instagram", INST);
+        if (about == null){
+            about = readTextFile(aboutFilePath);
+        }
         return new SendMessage()
                 .setChatId(chat_id)
-                .setText(readAbout())
+                .setText(about)
                 .setReplyMarkup(setCustomKeyboard(mainKeyboard, true));
     }
 
@@ -29,21 +32,4 @@ public class AboutKeyboard extends Keyboard {
     public ButtonType getPreviousKeyboardButton() {
         return ButtonType.CAFE;
     }
-
-    private static String readAbout() {
-
-        if (about == null) {
-            try {
-                byte[] result = Files.readAllBytes(Paths.get(aboutFilePath));
-                about = new String(result);
-                return about;
-
-            } catch (IOException ex) {
-                //todo прикрутить логер
-                ex.printStackTrace();
-            }
-        }
-        return about;
-    }
-
 }

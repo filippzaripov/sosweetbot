@@ -4,6 +4,9 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -65,5 +68,17 @@ public abstract class Keyboard {
     public abstract SendMessage getKeyboardSendMessage(long chat_id);
 
     public abstract ButtonType getPreviousKeyboardButton();
+
+    public String readTextFile(String filePath) {
+        String text;
+        try {
+            byte[] result = Files.readAllBytes(Paths.get(filePath));
+            return new String(result);
+        } catch (IOException ex) {
+            //todo прикрутить логер
+            throw new RuntimeException("Ошибка при чтении данных");
+        }
+    }
+
 
 }
