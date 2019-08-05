@@ -1,5 +1,7 @@
 package ru.sosweet.keyboards;
 
+import static ru.sosweet.BotProperties.PROPS_INSTAGRAM;
+
 public enum ButtonType {
     ERROR("error"),
     BACK("back"),
@@ -14,7 +16,7 @@ public enum ButtonType {
     MENU("menu"),
 
     ABOUT("about"),
-    INST("https://instagram.com/sosweet_cafe"),
+    INST(PROPS_INSTAGRAM),
 
     CONTACTS("contacts"),
     LOCATION("location"),
@@ -31,17 +33,16 @@ public enum ButtonType {
     DESSERT("dessert");
 
 
-
     public String callBackData;
 
     ButtonType(String callBackData) {
         this.callBackData = callBackData;
     }
 
-    public static ButtonType getButtonTypeByCallback(String callBackData){
-        for ( ButtonType button: values()
-             ) {
-            if (button.callBackData.equals(callBackData)){
+    public static ButtonType getButtonTypeByCallback(String callBackData) {
+        for (ButtonType button : values()
+        ) {
+            if (button.callBackData.equals(callBackData)) {
                 return button;
             }
         }

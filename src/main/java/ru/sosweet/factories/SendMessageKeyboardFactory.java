@@ -10,6 +10,7 @@ public class SendMessageKeyboardFactory {
     private static final Keyboard emptyKeyboard = new ErrorMessageKeyboard();
     private static final Keyboard aboutKeyboard = new AboutKeyboard();
     private static final Keyboard contactsKeyboard = new ContactsKeyboard();
+    private static final Keyboard promotionsKeyboard = new PromotionsKeyboard();
 
     public static Keyboard getKeyboard(ButtonType callBackData) {
         switch (callBackData) {
@@ -23,6 +24,8 @@ public class SendMessageKeyboardFactory {
                 return aboutKeyboard;
             case CONTACTS:
                 return contactsKeyboard;
+            case PROMOTIONS:
+                return promotionsKeyboard;
             default:
                 return emptyKeyboard;
         }

@@ -9,6 +9,7 @@ public class BotProperties {
     private static final String contactsPath = "src/main/resources/text/contacts";
     private static final String promotionsPath = "src/main/resources/text/promotions";
     private static final Properties telegramProperties = FilesReader.getProperties("src/main/resources/telegram.properties");
+    private static final Properties otherProperties = FilesReader.getProperties("src/main/resources/otherProps.properties");
 
     public static String PROXY_HOST;
     public static String PROXY_PORT;
@@ -20,6 +21,8 @@ public class BotProperties {
 
     public static String BOT_USERNAME;
     public static String BOT_TOKEN;
+
+    public static String PROPS_INSTAGRAM;
 
     static {
         if (proxyProperties != null) {
@@ -34,6 +37,8 @@ public class BotProperties {
 
         BOT_USERNAME = telegramProperties.getProperty("username");
         BOT_TOKEN = telegramProperties.getProperty("token");
+
+        PROPS_INSTAGRAM = otherProperties.getProperty("instagram");
 
     }
 
